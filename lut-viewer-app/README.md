@@ -1,59 +1,77 @@
-# CineSnap
+# CineSnap - Smart Log Video Viewer & Snapshot Tool
 
-CineSnap is an Electron app for fast LUT preview, grading, snapshotting, and exporting.
+CineSnap is a specialized tool for video creators who shoot in Log (S-Log3, Apple Log, etc.). It acts as a lightweight, intelligent viewer that instantly normalizes flat footage for preview without the overhead of a full NLE.
 
-## Key Behavior (Updated)
+Designed for specialized workflows:
+- **Smart Log Viewer**: Automatically detects and corrects Log footage (S-Log3, Apple Log, HLG) for viewing.
+- **Instant High-Res Snapshots**: Extract full-resolution photo snapshots (JPEGs) from your video frames with a single keystroke (`P`).
+- **Look Comparison**: Apply and compare different LUTs or grades per clip to find the perfect look.
+- **Batch Export**: Export clips with your baked-in look for quick sharing or client review.
 
-- `P` captures a **snapshot image** (JPEG frame), not a video export.
-- `Cmd/Ctrl+Up` jumps to previous saved snapshot timestamp.
-- `Cmd/Ctrl+Down` jumps to next saved snapshot timestamp.
-- Export button exports **videos** from the playlist (full clips).
-- Grading is **per video** (Lightroom-style): each clip stores its own grade profile.
-- Per-video grade profiles are persisted across restarts.
-- New videos start with neutral grade (no adjustments).
-- Grade supports **Copy / Paste / Reset** for quickly matching looks between clips.
+## Key Features
 
-## Export Workflow (Updated)
+- **Smart Preview**: Intelligent color space handing ensures your Log footage looks correct instantly.
+- **Snapshot Workflow**:
+  - `P`: Capture **high-res snapshot image** (JPEG frame) at current timecode.
+  - `Cmd/Ctrl+Up/Down`: Jump between captured snapshot timestamps.
+- **Grading & LUTs**:
+  - Per-clip grading profiles (Exposure, Contrast, Saturation).
+  - Support for custom LUTs (.cube).
+  - Copy / Paste / Reset grades across clips.
+- **Export Control**:
+  - `Smart LUT Apply`: Automatically applies LUTs only to Log footage (Log/HLG) while skipping Rec.709 clips.
+  - Selective export via checkboxes.
 
-- Export target is controlled per clip in the Files tab (checkboxes + `All / None / Current`).
-- Export button is selection-aware and disabled when nothing is selected.
-- `Smart LUT Apply on Export` setting:
-  - `rec709` clips: LUT skipped
-  - `rec709` in `BT.2020` clips: LUT skipped
-  - `hlg` clips: LUT applied
-  - `s-log3` / `apple-log` clips: LUT applied
-  - `unknown` clips: asks every time per clip
-- If a clip has no LUT and no grade changes, export skips processing for that clip.
-- Auto-clear after export removes successfully exported clips from playlist.
+## Installation for Collaborators
 
-## Quick Start
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- Git
+
+### Quick Start
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/vecyang1/CineSnap.git
+    cd CineSnap/lut-viewer-app
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Run the app in development mode:**
+    ```bash
+    npm run dev
+    ```
+    The app window should appear shortly.
+
+## Build for Distribution
+
+To create a standalone application file (`.dmg`, `.exe`, `.AppImage`):
 
 ```bash
-npm install
-npm run dev
-```
-
-## Build
-
-```bash
+# macOS (Universal / Intel / Apple Silicon)
 npm run build:mac
+
+# Windows
 npm run build:win
+
+# Linux
 npm run build:linux
 ```
 
-## Validation
+The built application can be found in the `dist` or `release` folder (depending on configuration).
 
-```bash
-npm run typecheck
-node --test tests/*.mjs
-```
+## Tech Stack
 
-## Stack
-
-- Electron + React + TypeScript
-- Tailwind CSS
-- WebGL/GLSL rendering
-- Zustand state management
+- **Core**: Electron, React, TypeScript
+- **Styling**: Tailwind CSS
+- **Performance**: WebGL/GLSL rendering, Zustand state management
+- **Media**: FFmpeg (via fluent-ffmpeg/ffmpeg-static)
 
 ## License
 

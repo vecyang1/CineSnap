@@ -1,7 +1,7 @@
 {
   "name": "cinesnap",
   "version": "1.0.0",
-  "description": "CineSnap - Fast LUT Preview & Grading Application",
+  "description": "CineSnap - Smart Log Video Viewer & Snapshot Tool",
   "main": "./out/main/index.js",
   "author": "Vec Yang",
   "homepage": "https://electron-vite.org",
