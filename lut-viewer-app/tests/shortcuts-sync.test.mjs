@@ -1,0 +1,57 @@
+import assert from 'node:assert/strict'
+import path from 'node:path'
+import { readFileSync } from 'node:fs'
+import test from 'node:test'
+
+const projectRoot = path.resolve(process.cwd())
+
+test('shortcut definitions are centralized and reused in menu + controls', () => {
+  const shortcutsSource = readFileSync(path.join(projectRoot, 'src/common/shortcuts.ts'), 'utf8')
+  const mainSource = readFileSync(path.join(projectRoot, 'src/main/index.ts'), 'utf8')
+  const controlsSource = readFileSync(path.join(projectRoot, 'src/renderer/src/components/Player/Controls.tsx'), 'utf8')
+  const sidebarSource = readFileSync(path.join(projectRoot, 'src/renderer/src/components/Sidebar/Sidebar.tsx'), 'utf8')
+  const videoPlayerSource = readFileSync(path.join(projectRoot, 'src/renderer/src/components/Player/VideoPlayer.tsx'), 'utf8')
+  const keyboardTargetSource = readFileSync(path.join(projectRoot, 'src/renderer/src/lib/keyboard-target.ts'), 'utf8')
+  const cssSource = readFileSync(path.join(projectRoot, 'src/renderer/src/assets/main.css'), 'utf8')
+
+  assert.match(shortcutsSource, /captureSnapshot:\s*\{/)
+  assert.match(shortcutsSource, /accelerator:\s*['"]P['"]/)
+  assert.match(shortcutsSource, /toggleSidebarAlternative:\s*\{/)
+
+  assert.match(mainSource, /Menu\.buildFromTemplate/)
+  assert.match(mainSource, /SHORTCUTS\.captureSnapshot\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.toggleLutBypass\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.toggleMute\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.shuttleReverse\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.shuttleToggle\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.shuttleForward\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.switchToFilesTab\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.switchToSnapsTab\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.switchToLutsTab\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.switchToGradeTab\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.toggleSidebar\.accelerator/)
+  assert.match(mainSource, /SHORTCUTS\.toggleSidebarAlternative\.accelerator/)
+  assert.match(mainSource, /before-input-event/)
+  assert.match(mainSource, /SHORTCUTS\.toggleSidebar\.keyCode/)
+  assert.match(mainSource, /SHORTCUTS\.toggleSidebarAlternative\.keyCode/)
+  assert.match(mainSource, /send\('menu-action', 'toggleSidebar'\)/)
+
+  assert.match(controlsSource, /SHORTCUTS\.captureSnapshot\.title/)
+  assert.match(controlsSource, /slider-clean/)
+  assert.match(cssSource, /\.slider-clean:focus/)
+  assert.match(cssSource, /\.slider-clean:focus-visible/)
+  assert.match(sidebarSource, /SHORTCUTS\.switchToFilesTab\.keyCode/)
+  assert.match(sidebarSource, /SHORTCUTS\.switchToSnapsTab\.keyCode/)
+  assert.match(sidebarSource, /SHORTCUTS\.switchToLutsTab\.keyCode/)
+  assert.match(sidebarSource, /SHORTCUTS\.switchToGradeTab\.keyCode/)
+  assert.match(sidebarSource, /SHORTCUTS\.toggleSidebar\.keyCode/)
+  assert.match(sidebarSource, /SHORTCUTS\.toggleSidebarAlternative\.keyCode/)
+  assert.match(sidebarSource, /isShortcutTypingTarget/)
+  assert.match(videoPlayerSource, /isShortcutTypingTarget/)
+  assert.match(videoPlayerSource, /action === 'toggleMute'/)
+  assert.match(videoPlayerSource, /SHORTCUTS\.toggleMute\.keyCode/)
+  assert.match(keyboardTargetSource, /target\.tagName !== 'INPUT'/)
+  assert.match(keyboardTargetSource, /input\.type/)
+  assert.doesNotMatch(sidebarSource, /target\.tagName === 'INPUT' \|\|/)
+  assert.doesNotMatch(videoPlayerSource, /target\.tagName === 'INPUT' \|\|/)
+})

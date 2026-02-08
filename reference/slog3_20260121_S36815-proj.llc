@@ -1,0 +1,18 @@
+{
+  version: 2,
+  mediaFileName: 'slog3_20260121_S36815.MP4',
+  cutSegments: [
+    {
+      start: 0,
+      end: 7.899075,
+      name: '',
+      selected: true,
+    },
+    {
+      start: 9.51255,
+      end: 11.184739,
+      name: '',
+      selected: true,
+    },
+  ],
+}
