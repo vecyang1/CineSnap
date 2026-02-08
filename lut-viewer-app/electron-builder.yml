@@ -29,6 +29,12 @@ mac:
   notarize: false
 dmg:
   artifactName: ${name}-${version}.${ext}
+mas:
+  type: distribution
+  category: public.app-category.video
+  entitlements: build/entitlements.mas.plist
+  entitlementsInherit: build/entitlements.mas.inherit.plist
+  provisioningProfile: "build/embedded.provisionprofile"
 linux:
   target:
     - AppImage

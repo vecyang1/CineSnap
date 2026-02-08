@@ -20,18 +20,17 @@ Download and install these into your Keychain.
 
 ## 2. Configuration (`electron-builder.yml`)
 
-Ensure your `electron-builder.yml` has the `mas` (Mac App Store) target configured.
+I have already configured the `electron-builder.yml` with the necessary settings for MAS.
 
-```yaml
-mas:
-  type: distribution
-  category: public.app-category.video
-  entitlements: build/entitlements.mas.plist
-  entitlementsInherit: build/entitlements.mas.inherit.plist
-  provisioningProfile: "path/to/embedded.provisionprofile"
-```
+**CRITICAL STEP**:
+1.  After downloading your **Mac Provisioning Profile** from Apple Developer.
+2.  **Rename** it to `embedded.provisionprofile`.
+3.  **Place** it inside the `lut-viewer-app/build/` folder.
+    - Path: `lut-viewer-app/build/embedded.provisionprofile`
 
-*Note: You may need to create the entitlement files in `build/` if they don't exist.*
+*Why? The build configuration expects the file at this exact location.*
+
+The `build/entitlements.mas.plist` and `build/entitlements.mas.inherit.plist` files have already been created for you.
 
 **`build/entitlements.mas.plist`**:
 ```xml
