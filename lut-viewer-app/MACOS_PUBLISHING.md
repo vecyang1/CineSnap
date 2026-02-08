@@ -78,7 +78,12 @@ electron-builder build --mac mas
     - **Keywords**: Log Viewer, S-Log3, Color Grading, LUT, Video Preview, Snapshot.
     - **Category**: Photo & Video / Video.
 4.  Select the build you uploaded via Transporter.
-5.  Submit for Review.
+5.  **Pricing and Availability**:
+    - Go to **Pricing and Availability**.
+    - Under **Price Schedule**, select a **Price Tier** (e.g., Tier 1 for $0.99, Tier 5 for $4.99, etc.).
+    - Maintain the default "No End Date" for a one-time purchase.
+    - **Do NOT** configure "In-App Purchases" or "Subscriptions" if you want a simple one-time paid app.
+6.  Submit for Review.
 
 ## Troubleshooting
 
