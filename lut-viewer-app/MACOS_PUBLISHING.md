@@ -80,9 +80,9 @@ electron-builder build --mac mas
 4.  Select the build you uploaded via Transporter.
 5.  **Pricing and Availability**:
     - Go to **Pricing and Availability**.
-    - Under **Price Schedule**, select a **Price Tier** (e.g., Tier 1 for $0.99, Tier 5 for $4.99, etc.).
-    - Maintain the default "No End Date" for a one-time purchase.
-    - **Do NOT** configure "In-App Purchases" or "Subscriptions" if you want a simple one-time paid app.
+    - Under **Price Schedule**, select the **Price Tier** for **$19.99** (typically **Tier 20**).
+    - Ensure "No End Date" is selected.
+    - **Do NOT** create any "In-App Purchases" or "Subscriptions". This ensures it is a simple one-time fee.
 6.  Submit for Review.
 
 ## Troubleshooting
